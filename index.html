@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carreto Azu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+ <style>
+ :root {
+  --azul: #1a2a6c;
+  --azul-escuro: #0d1447;
+  --azul-claro: #3a5bdc;
+  --cinza-claro: #1e1e2f;
+  --cinza-escuro: #12121f;
+  --branco: #ffffff;
+  --sombra: rgba(0, 0, 0, 0.7);
+  --transicao: 0.4s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: var(--branco);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--branco); /* 🔄 FUNDO BRANCO */
+}
+
+body {
+  background-color: var(--branco); /* 🔄 FUNDO BRANCO */
+  color: var(--branco);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* HEADER */
+header {
+  background: var(--branco);
+  color: var(--azul-escuro);
+  padding: 25px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  box-shadow: 0 8px 30px var(--sombra);
+  animation: fadeDown 0.7s ease-out forwards;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Nav container */
+nav {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+}
+
+/* Logo com efeito gradient animado */
+nav h1 {
+  font-size: 36px;
+  font-weight: 900;
+  background: linear-gradient(270deg, #010d64, #93a3ff, #0230ba);
+  background-size: 600% 600%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 8s ease infinite;
+  cursor: default;
+  user-select: none;
+}
+
+/* Menu links */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+nav ul li a {
+  color: var(--azul-escuro);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  position: relative;
+  padding-bottom: 6px;
+  transition: color 0.3s ease;
+  letter-spacing: 0.05em;
+}
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  background: var(--azul-claro);
+  left: 0;
+  bottom: 0;
+  border-radius: 2px;
+  transition: width 0.35s ease;
+}
+
+nav ul li a:hover {
+  color: var(--azul-claro);
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  z-index: 0;
+}
+
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  color: var(--branco);
+  max-width: 900px;
+  animation: fadeIn 1s ease forwards;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+}
+
+.btn {
+  background: var(--azul-claro);
+  color: var(--branco);
+  padding: 14px 36px;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 6px 16px rgba(58, 91, 220, 0.8);
+}
+
+.btn:hover {
+  background: var(--azul);
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(58, 91, 220, 1);
+}
+
+/* SECTION */
+section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: auto;
+  animation: fadeUp 1s ease forwards;
+  color: var(--branco);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 36px;
+  color: var(--azul-claro);
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.section-title::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  background: var(--azul-claro);
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+}
+
+.card {
+  background: #2a2c3a;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+  transition: var(--transicao);
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInCard 0.8s ease forwards;
+  color: var(--branco);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 36px rgba(58, 91, 220, 0.9);
+}
+
+.card h3 {
+  margin-bottom: 12px;
+  color: var(--azul-claro);
+  font-size: 1.4rem;
+}
+
+.card p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* FORMULÁRIO */
+form {
+  background: #222431;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.9);
+  color: var(--branco);
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  font-size: 16px;
+  background: #1e1f2f;
+  color: var(--branco);
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  color: #888;
+}
+
+form textarea {
+  resize: none;
+}
+
+/* RODAPÉ */
+footer {
+  background: var(--azul-escuro);
+  color: var(--branco);
+  padding: 30px 20px;
+  text-align: center;
+}
+
+/* WHATSAPP */
+.whatsapp {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #128c7e;
+  color: var(--branco);
+  font-size: 28px;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  border-radius: 50%;
+  box-shadow:
+    0 4px 10px rgba(18, 140, 126, 0.7),
+    0 8px 20px rgba(18, 140, 126, 0.5),
+    0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: pulse 3s infinite ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1500;
+  text-decoration: none;
+  filter: drop-shadow(0 0 5px rgba(18, 140, 126, 0.8));
+}
+
+.whatsapp:hover {
+  transform: scale(1.2) translateY(-5px);
+  box-shadow:
+    0 12px 25px rgba(18, 140, 126, 1),
+    0 22px 40px rgba(18, 140, 126, 0.7),
+    0 8px 20px rgba(0, 0, 0, 0.3);
+  filter: drop-shadow(0 0 10px rgba(18, 140, 126, 1));
+  background: linear-gradient(135deg, #25d366, #128c7e);
+}
+
+/* ANIMAÇÕES */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInCard {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+</style>
+</head>
+<body>
+  <header>
+  <nav>
+    <div class="logo-container">
+      <img src="logo3.png" alt="JVF Transportes Logo" class="logo" />
+      <h1>JVF transportes</h1>
+    </div>
+    <ul>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#Avaliações">Avaliações</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+ <section class="hero">
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="fundo3.mp4" type="video/mp4" />
+    Seu navegador não suporta vídeo HTML5.
+  </video>
+  <div class="hero-content">
+    <h2>Fretes e Carretos com Agilidade</h2>
+    <p>Rápido, seguro e com o melhor custo-benefício</p>
+    <a href="agenda.html" class="btn">Solicite seu Pedido</a>
+  </div>
+</section>
+
+
+  <section id="sobre">
+    <h2 class="section-title">Quem Somos</h2>
+    <div class="card">
+      <p>Somos especialistas em frete e carretos urbanos e intermunicipais. Nossa missão é garantir que sua carga chegue ao destino com segurança e no menor tempo possível.</p>
+    </div>
+  </section>
+
+ <section id="servicos">
+  <h2 class="section-title">Serviços</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>🚚 Fretes Rápidos</h3>
+      <p>Atendimento ágil e pontual para suas entregas urgentes. Ideal para mudanças leves, encomendas rápidas e imprevistos do dia a dia.</p>
+    </div>
+    <div class="card">
+      <h3>🏠 Carretos Residenciais</h3>
+      <p>Transporte seguro e organizado de móveis, eletros e itens pessoais. Garantia de cuidado e eficiência do início ao fim.</p>
+    </div>
+    <div class="card">
+      <h3>🧰 Ajuda com Carga</h3>
+      <p>Conte com ajudantes experientes para carregar e descarregar com agilidade e segurança. Mais praticidade para você!</p>
+    </div>
+    <div class="card">
+      <h3>🪨 Mármore e Granito</h3>
+      <p>Especializados em transporte de pedras com extremo cuidado. Ideal para obras, reformas e entregas delicadas.</p>
+    </div>
+  </div>
+</section>
+
+
+
+ <section id="depoimentos">
+  <h2 class="section-title">Avaliações</h2>
+  <div class="cards">
+    <div class="card">
+      <p>"Serviço excelente! Chegou no horário e cuidou de tudo com muito zelo." – João P.</p>
+    </div>
+    <div class="card">
+      <p>"Melhor carreto da cidade. Já usei três vezes e recomendo sempre!" – Ana C.</p>
+    </div>
+    <div class="card">
+      <p>"Equipe super atenciosa e preço justo. Resolveram meu transporte sem complicação." – Marcos T.</p>
+    </div>
+    <div class="card">
+      <p>"Rápido, eficiente e muito cuidadoso com os móveis. Nota 10!" – Larissa M.</p>
+    </div>
+    <div class="card">
+      <p>"Profissionalismo e comprometimento do início ao fim. Excelente experiência." – Ricardo S.</p>
+    </div>
+    <div class="card">
+      <p>"Fiquei impressionada com a organização e pontualidade. Recomendo de olhos fechados!" – Carla B.</p>
+    </div>
+  </div>
+</section>
+
+
+ <section id="contato">
+  <h2 class="section-title">Contato</h2>
+  <form action="https://formspree.io/f/YOUR_ID_AQUI" method="POST">
+    <input type="text" name="nome" placeholder="Seu nome" required />
+    <input type="email" name="email" placeholder="Seu e-mail" required />
+    <textarea name="mensagem" rows="5" placeholder="Como podemos ajudar?" required></textarea>
+    <button type="submit" class="btn">Enviar Mensagem</button>
+
+    <!-- Redes sociais -->
+    <div class="contato-redes">
+      <p>Ou fale conosco via:</p>
+      <a href="https://wa.me/5591999999999" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon-redes" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" role="img" aria-label="Ícone WhatsApp">
+          <path d="M16.003 2C8.832 2 3 7.828 3 15c0 2.645.87 5.078 2.338 7.06L3 29l6.191-2.313A12.932 12.932 0 0 0 16.003 28c7.171 0 13-5.827 13-13S23.174 2 16.003 2zm7.532 18.985c-.298.838-1.745 1.59-2.404 1.688-.616.09-1.346.13-3.251-.966-1.902-1.096-3.11-3.056-3.205-3.192-.096-.134-.776-1.143-.776-2.18 0-1.037.576-1.547.78-1.758.204-.209.444-.261.62-.261.16 0 .322.005.464.008.15.003.352-.057.553.417.202.474.683 1.64.742 1.76.06.12.1.26.02.415-.08.154-.12.256-.244.39-.12.133-.255.296-.365.4-.12.104-.246.224-.107.44.138.216.613 1.013 1.316 1.638.902.79 1.66 1.048 1.897 1.165.238.115.378.097.516-.06.138-.157.59-.685.742-.925.153-.24.308-.197.51-.118.204.08 1.3.612 1.522.72.222.11.37.165.425.256.053.09.053.522-.244 1.36z"/>
+        </svg>
+        WhatsApp
+      </a>
+      <a href="https://instagram.com/seuusuario" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon-redes" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm8.25 2.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zm-4.25 1a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/>
+        </svg>
+        Instagram
+      </a>
+    </div>
+  </form>
+</section>
+
+<style>
+.contato-redes {
+  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--azul-claro);
+  user-select: none;
+  text-shadow: 0 0 6px rgba(58, 91, 220, 0.6);
+}
+
+.contato-redes p {
+  margin: 0;
+  padding: 0 8px 0 0;
+  border-right: 2px solid var(--azul-claro);
+  user-select: none;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .contato-redes p {
+    border-right: none;
+    padding-right: 0;
+    margin-bottom: 12px;
+    width: 100%;
+    text-align: center;
+  }
+  .contato-redes {
+    gap: 24px;
+    flex-direction: column;
+  }
+}
+
+.contato-redes a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--azul-escuro);
+  background: linear-gradient(135deg, #3a5bdc, #1a2a6c);
+  padding: 10px 20px;
+  border-radius: 12px;
+  box-shadow:
+    0 4px 10px rgba(58, 91, 220, 0.35),
+    0 8px 20px rgba(26, 42, 108, 0.5);
+  transition:
+    background 0.4s ease,
+    color 0.4s ease,
+    box-shadow 0.4s ease,
+    transform 0.3s ease;
+  user-select: none;
+  will-change: transform;
+}
+
+.contato-redes a:hover,
+.contato-redes a:focus {
+  background: linear-gradient(135deg, #1a2a6c, #3a5bdc);
+  color: var(--branco);
+  box-shadow:
+    0 6px 16px rgba(58, 91, 220, 0.7),
+    0 14px 32px rgba(26, 42, 108, 0.8);
+  outline: none;
+  transform: scale(1.08);
+  cursor: pointer;
+}
+
+.icon-redes {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.contato-redes a:hover .icon-redes {
+  transform: rotate(15deg) scale(1.1);
+}
+
+
+</style>
+
+  <footer>
+    <p>&copy; 2025 Carreto Azul. Todos os direitos reservados.</p>
+  </footer>
+
+  <a href="https://wa.me/5511972733556" class="whatsapp" target="_blank" title="Fale pelo WhatsApp">💬</a>
+</body>
+</html>
