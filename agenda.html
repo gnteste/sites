@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agendamento de Carreto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --azul: #1a2a6c;
+      --azul-claro: #3a5bdc;
+      --cinza-escuro: #12121f;
+      --branco: #e1e1e6;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--cinza-escuro);
+      color: var(--branco);
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--azul-claro);
+      margin-bottom: 30px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+      background: #1e1e2f;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: 1px solid #333;
+      background: #2a2c3a;
+      color: var(--branco);
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      background: var(--azul-claro);
+      color: var(--branco);
+      padding: 14px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background: var(--azul);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Agendamento de Carreto</h1>
+
+  <form id="agendamento-form">
+    <label for="nome">Nome Completo</label>
+    <input type="text" name="nome" required>
+
+    <label for="telefone">Telefone</label>
+    <input type="tel" name="telefone" required>
+
+    <label for="data">Data</label>
+    <input type="date" name="data" required>
+
+    <label for="hora">Hora</label>
+    <input type="time" name="hora" required>
+
+    <label for="escada">Tem escadas no local?</label>
+    <select name="escada" required>
+      <option value="">Selecione</option>
+      <option value="Sim">Sim</option>
+      <option value="Não">Não</option>
+    </select>
+
+    <label for="elevador">Tem elevador no local?</label>
+    <select name="elevador" required>
+      <option value="">Selecione</option>
+      <option value="Sim">Sim</option>
+      <option value="Não">Não</option>
+    </select>
+
+    <label for="objetos">Quais objetos/móveis/metais/mármore?</label>
+    <input type="text" name="objetos" placeholder="Ex: sofá, geladeira, armário, pia de mármore...">
+
+    <label for="origem">Endereço de coleta (onde buscar)</label>
+    <input type="text" name="origem" required placeholder="Ex: Rua das Flores, 123 - Bairro">
+
+    <label for="destino">Endereço de destino (entrega)</label>
+    <input type="text" name="destino" required placeholder="Ex: Av. Central, 456 - Bairro">
+<label for="orcamento">Deseja negociar o valor?</label>
+    <select name="orcamento" required>
+      <option value="">Selecione</option>
+      <option value="Sim, quero negociar">Sim, quero negociar</option>
+      <option value="Prefiro receber um valor fixo">Prefiro valor fixo</option>
+    </select>
+    <label for="valor">Valor sugerido pelo cliente (R$)</label>
+    <input type="number" name="valor" placeholder="Ex: 150.00" min="0" step="0.01">
+
+    
+
+    <label for="mensagem">Observações</label>
+    <textarea name="mensagem" rows="4" placeholder="Descreva detalhes importantes..."></textarea>
+
+    <button type="submit">Enviar Agendamento</button>
+  </form>
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+  // Substitua pelas suas informações
+  const PUBLIC_KEY = "RvSWzvgIPphGJZjkE";
+  const SERVICE_ID = "service_w61ly2f";
+  const TEMPLATE_ID = "template_ltp2il1";
+
+  // Inicializa EmailJS
+  emailjs.init(PUBLIC_KEY);
+
+  // Captura o formulário
+  document.getElementById("agendamento-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Envia os dados do formulário via EmailJS
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this)
+      .then(function(response) {
+        alert("✅ Agendamento enviado com sucesso!");
+        document.getElementById("agendamento-form").reset();
+      }, function(error) {
+        console.error("Erro:", error);
+        alert("❌ Erro ao enviar o agendamento. Tente novamente.");
+      });
+  });
+</script>
+
+</body>
+</html>
